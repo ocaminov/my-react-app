@@ -5,6 +5,26 @@ const products = [
   { id: 4, name: "Monitor", price: 400 },
 ];
 
+const user = {
+  id: 1,
+  name: "Oleyda",
+  role: "Frontend Developer",
+  country: "Cuba"
+};
+
+function getUserInfo({name, role, country}){
+  
+  return `${name} is a ${role} from ${country}`;
+}
+
+function addExperience(user){
+  return {...user, experience: 5};
+}
+
+function updateRole(user){
+  return {...user, role: "React Developer"};
+}
+
 
 function getExpensiveProducts(products){
  return products.filter(product => product.price >= 100);    
@@ -45,5 +65,6 @@ function calculateAveragePrice(products){
 }
 
 
-console.log(calculateAveragePrice(products));
+console.log(user);
+console.log(updateRole(user));
 
