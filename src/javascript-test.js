@@ -11,4 +11,11 @@ function getExpensiveProducts(products){
 
 }
 
+function getProductNames(products){
+  let productsNames = [];
+  products.map(product => productsNames.push(product.name));
+  return productsNames;
+}
+
 console.log(getExpensiveProducts(products));
+console.log(getProductNames(products));
