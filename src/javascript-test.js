@@ -72,7 +72,8 @@ function getProductsByCategory(products, category){
 function getAffordableElectronics(products){
 
   let productCategory = getProductsByCategory(products, "Electronics");
-  return productCategory.filter(product => product.price <= 500);
+  let productCategoryPrice = productCategory.filter(product => product.price <= 500);
+  return productCategoryPrice.map(element => element.name);
 }
 
 
