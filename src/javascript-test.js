@@ -17,5 +17,18 @@ function getProductNames(products){
   return productsNames;
 }
 
-console.log(getExpensiveProducts(products));
-console.log(getProductNames(products));
+function getAffordableProductNames(products){
+  let productPrice = products.filter(product => product.price <= 100);
+  let result = getProductNames(productPrice);
+  return result;
+
+}
+
+function getExpensiveProductNames(products){
+  let productPrice = products.filter(product => product.price > 100);
+  let result = getProductNames(productPrice);
+  return result;
+}
+
+console.log(getAffordableProductNames(products));
+console.log(getExpensiveProductNames(products));
