@@ -1,8 +1,9 @@
 const products = [
-  { id: 1, name: "Laptop", price: 1200 },
-  { id: 2, name: "Mouse", price: 30 },
-  { id: 3, name: "Keyboard", price: 80 },
-  { id: 4, name: "Monitor", price: 400 },
+  { id: 1, name: "Laptop", price: 1200, category: "Electronics" },
+  { id: 2, name: "Mouse", price: 30, category: "Electronics" },
+  { id: 3, name: "T-Shirt", price: 25, category: "Clothing" },
+  { id: 4, name: "Monitor", price: 400, category: "Electronics" },
+  { id: 5, name: "Jeans", price: 60, category: "Clothing" },
 ];
 
 const user = {
@@ -64,7 +65,16 @@ function calculateAveragePrice(products){
   return result;
 }
 
+function getProductsByCategory(products, category){
+  return products.filter(product => product.category === category);
+}
 
-console.log(user);
-console.log(updateRole(user));
+function getAffordableElectronics(products){
+
+  let productCategory = getProductsByCategory(products, "Electronics");
+  return productCategory.filter(product => product.price <= 500);
+}
+
+
+console.log(getAffordableElectronics(products));
 
