@@ -30,5 +30,20 @@ function getExpensiveProductNames(products){
   return result;
 }
 
-console.log(getAffordableProductNames(products));
-console.log(getExpensiveProductNames(products));
+function calculateTotal(products){
+  return products.reduce((accumulator, currentValue) => {
+    
+    return accumulator += currentValue.price;
+
+}, 0);
+
+}
+
+function calculateAveragePrice(products){
+  let result = calculateTotal(products)/products.length;
+  return result;
+}
+
+
+console.log(calculateAveragePrice(products));
+
