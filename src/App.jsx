@@ -22,6 +22,7 @@ const movies = [
 
 function App() {
   const [showMovies, setShowMovies] = useState(true);
+  const [favoriteMovies, setFavoriteMovies] = useState(0);
   return (
     <>
       <button onClick={() => setShowMovies(!showMovies)}>
@@ -35,8 +36,12 @@ function App() {
             title={movie.title}
             year={movie.year}
             rating={movie.rating}
+            setFavoriteMovies={setFavoriteMovies}
+            favoriteMovies={favoriteMovies}
           />
         ))}
+
+      <p>Favorite movies: {favoriteMovies}</p>
     </>
   );
 }
