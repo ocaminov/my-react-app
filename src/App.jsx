@@ -22,7 +22,7 @@ const movies = [
 
 function App() {
   const [showMovies, setShowMovies] = useState(true);
-  const [favoriteMovies, setFavoriteMovies] = useState(0);
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
   return (
     <>
       <button onClick={() => setShowMovies(!showMovies)}>
@@ -41,7 +41,7 @@ function App() {
           />
         ))}
 
-      <p>Favorite movies: {favoriteMovies}</p>
+      <p>Favorite movies: {favoriteMovies.length}</p>
     </>
   );
 }
