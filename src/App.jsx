@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 import MovieCard from "./MovieCard";
 
@@ -20,16 +21,22 @@ const movies = [
 ];
 
 function App() {
+  const [showMovies, setShowMovies] = useState(true);
   return (
     <>
-      {movies.map((movie) => (
-        <MovieCard
-          key={movie.title}
-          title={movie.title}
-          year={movie.year}
-          rating={movie.rating}
-        />
-      ))}
+      <button onClick={() => setShowMovies(!showMovies)}>
+        {showMovies ? "Ocultar películas" : "Mostrar películas"}
+      </button>
+
+      {showMovies &&
+        movies.map((movie) => (
+          <MovieCard
+            key={movie.title}
+            title={movie.title}
+            year={movie.year}
+            rating={movie.rating}
+          />
+        ))}
     </>
   );
 }
