@@ -1,6 +1,14 @@
 import { useState } from "react";
 
-function MovieCard({ title, year, rating, setFavoriteMovies, favoriteMovies }) {
+function MovieCard({
+  title,
+  year,
+  rating,
+  setFavoriteMovies,
+  favoriteMovies,
+  movies,
+  setMovies,
+}) {
   //const [found, setFound] = useState(false);
 
   const findFavoriteMovie = (title) => {
@@ -15,6 +23,13 @@ function MovieCard({ title, year, rating, setFavoriteMovies, favoriteMovies }) {
       setFavoriteMovies([...favoriteMovies, title]);
     else setFavoriteMovies(favoriteMovies.filter((movie) => movie !== title));
   };
+
+  const handleDelete = (title) => {
+    setMovies(movies.filter((movie) => movie.title !== title));
+    if (findFavoriteMovie(title))
+      setFavoriteMovies(favoriteMovies.filter((movie) => movie !== title));
+  };
+
   return (
     <>
       <h3>{title}</h3>
@@ -25,6 +40,7 @@ function MovieCard({ title, year, rating, setFavoriteMovies, favoriteMovies }) {
           ? "❤️ Remove from favorites"
           : "🤍 Add to favorites"}
       </button>
+      <button onClick={() => handleDelete(title)}>🗑️ Delete</button>
     </>
   );
 }

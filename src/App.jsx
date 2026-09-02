@@ -87,6 +87,8 @@ function App() {
             rating={movie.rating}
             setFavoriteMovies={setFavoriteMovies}
             favoriteMovies={favoriteMovies}
+            movies={movies}
+            setMovies={setMovies}
           />
         ))}
 
