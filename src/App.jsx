@@ -42,6 +42,15 @@ function App() {
         ))}
 
       <p>Favorite movies: {favoriteMovies.length}</p>
+      {favoriteMovies.length > 0 ? (
+        <ul>
+          {favoriteMovies.map((movie, i) => (
+            <li key={i}>{movie}</li>
+          ))}
+        </ul>
+      ) : (
+        <p>You don't have any favorite movies yet.</p>
+      )}
     </>
   );
 }
