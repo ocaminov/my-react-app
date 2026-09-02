@@ -8,9 +8,9 @@ function MovieCard({
   favoriteMovies,
   movies,
   setMovies,
+  editingMovie,
+  setEditingMovie,
 }) {
-  //const [found, setFound] = useState(false);
-
   const findFavoriteMovie = (title) => {
     if (favoriteMovies.includes(title)) {
       return true;
@@ -30,6 +30,10 @@ function MovieCard({
       setFavoriteMovies(favoriteMovies.filter((movie) => movie !== title));
   };
 
+  const handleUpdate = (title) => {
+    setEditingMovie(title);
+  };
+
   return (
     <>
       <h3>{title}</h3>
@@ -41,6 +45,7 @@ function MovieCard({
           : "🤍 Add to favorites"}
       </button>
       <button onClick={() => handleDelete(title)}>🗑️ Delete</button>
+      <button onClick={() => handleUpdate(title)}>✏️ Edit</button>
     </>
   );
 }

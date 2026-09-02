@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import MovieCard from "./MovieCard";
 
@@ -27,23 +27,51 @@ function App() {
   const [title, setTitle] = useState("");
   const [year, setYear] = useState("");
   const [rating, setRating] = useState("");
+  const [editingMovie, setEditingMovie] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setMovies([
-      ...movies,
-      {
-        title,
-        year,
-        rating,
-      },
-    ]);
+    if (editingMovie === null) {
+      setMovies([
+        ...movies,
+        {
+          title,
+          year,
+          rating,
+        },
+      ]);
+    } else {
+      setMovies(
+        movies.map((movie) => {
+          if (movie.title === editingMovie) {
+            return { title, year, rating };
+          } else return movie;
+        }),
+      );
+      setEditingMovie(null);
+    }
 
     setTitle("");
     setYear("");
     setRating("");
   };
+
+  const handleCancel = () => {
+    setTitle("");
+    setYear("");
+    setRating("");
+    setEditingMovie(null);
+  };
+
+  useEffect(() => {
+    if (editingMovie !== null) {
+      const findMovie = movies.find((movie) => movie.title === editingMovie);
+      setTitle(findMovie.title);
+      setYear(findMovie.year);
+      setRating(findMovie.rating);
+    }
+  }, [editingMovie]);
 
   return (
     <>
@@ -72,7 +100,12 @@ function App() {
           value={rating}
           onChange={(e) => setRating(e.target.value)}
         />
-        <button type="submit">Add movie</button>
+        <button type="submit">
+          {editingMovie !== null ? "Update movie" : "Add movie"}
+        </button>
+        <button type="button" onClick={handleCancel}>
+          Cancel
+        </button>
       </form>
       <button onClick={() => setShowMovies(!showMovies)}>
         {showMovies ? "Ocultar películas" : "Mostrar películas"}
@@ -89,6 +122,8 @@ function App() {
             favoriteMovies={favoriteMovies}
             movies={movies}
             setMovies={setMovies}
+            editingMovie={editingMovie}
+            setEditingMovie={setEditingMovie}
           />
         ))}
 
