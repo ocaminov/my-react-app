@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import MovieCard from "./MovieCard";
 
-const movies = [
+/*const movies = [
   {
     title: "Inception",
     year: 2010,
@@ -18,13 +18,62 @@ const movies = [
     year: 2009,
     rating: 7.8,
   },
-];
+];*/
 
 function App() {
   const [showMovies, setShowMovies] = useState(true);
   const [favoriteMovies, setFavoriteMovies] = useState([]);
+  const [movies, setMovies] = useState([]);
+  const [title, setTitle] = useState("");
+  const [year, setYear] = useState("");
+  const [rating, setRating] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    setMovies([
+      ...movies,
+      {
+        title,
+        year,
+        rating,
+      },
+    ]);
+
+    setTitle("");
+    setYear("");
+    setRating("");
+  };
+
   return (
     <>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="title">Title:</label>
+        <input
+          type="text"
+          name="title"
+          id="title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <label htmlFor="year">Year:</label>
+        <input
+          type="text"
+          name="year"
+          id="year"
+          value={year}
+          onChange={(e) => setYear(e.target.value)}
+        />
+        <label htmlFor="rating">Rating:</label>
+        <input
+          type="text"
+          name="rating"
+          id="rating"
+          value={rating}
+          onChange={(e) => setRating(e.target.value)}
+        />
+        <button type="submit">Add movie</button>
+      </form>
       <button onClick={() => setShowMovies(!showMovies)}>
         {showMovies ? "Ocultar películas" : "Mostrar películas"}
       </button>
