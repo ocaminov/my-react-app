@@ -4,11 +4,11 @@ function MovieCard({
   title,
   year,
   rating,
+  poster,
   setFavoriteMovies,
   favoriteMovies,
   movies,
   setMovies,
-  editingMovie,
   setEditingMovie,
 }) {
   const findFavoriteMovie = (title) => {
@@ -35,18 +35,21 @@ function MovieCard({
   };
 
   return (
-    <>
+    <div className="container">
+      <img src={poster} alt={title} />
       <h3>{title}</h3>
       <p>{year}</p>
       <p>⭐{rating}</p>
-      <button onClick={() => handleClick(title)}>
-        {findFavoriteMovie(title)
-          ? "❤️ Remove from favorites"
-          : "🤍 Add to favorites"}
-      </button>
-      <button onClick={() => handleDelete(title)}>🗑️ Delete</button>
-      <button onClick={() => handleUpdate(title)}>✏️ Edit</button>
-    </>
+      <div className="buttons-moviecard">
+        <button onClick={() => handleClick(title)}>
+          {findFavoriteMovie(title)
+            ? "❤️ Remove from favorites"
+            : "🤍 Add to favorites"}
+        </button>
+        <button onClick={() => handleDelete(title)}>🗑️ Delete</button>
+        <button onClick={() => handleUpdate(title)}>✏️ Edit</button>
+      </div>
+    </div>
   );
 }
 
